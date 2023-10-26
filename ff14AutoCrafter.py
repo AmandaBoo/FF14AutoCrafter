@@ -8,35 +8,31 @@ as you can
 Have the pot you want opened up with the synthesis button visible
 """
 
+def clickFunction(xpos, ypos, count, sleepTime):
+    for i in range(count):
+        pyautogui.click(xpos, ypos, count)
+    time.sleep(sleepTime)
 
-# change to quantitiy desired
-potsWanted = int(input("Pots desired: "))
 
+def main():
+    rotationsInput = int(input("Rotations desired: "))
 
-pyautogui.click(1093, 192) #click into ff screen
-while (potsWanted != 0):
-    print("Starting", potsWanted)
-    
-    # synthesis
-    pyautogui.click(1066, 764)
-    pyautogui.click(1066, 764)
+    #click into ff screen
+    pyautogui.click(1093, 192)
+    while (rotationsInput != 0):
+        print("Starting", rotationsInput)
 
-    # trial synthesis
-    #pyautogui.click(796, 764) 
-    #pyautogui.click(796, 764)
+        # synthesis
+        clickFunction(1066, 764, 2, 2)
 
-    # synthesis sleep
-    time.sleep(2)
+        # macro 1 (time to run macro 1)
+        clickFunction(942, 685, 2, 37)
 
-    # macro 1 (time to run macro 1)
-    pyautogui.click(942, 685) 
-    pyautogui.click(942, 685) 
-    time.sleep(37)
+        # macro 2 (time to run macro 2)
+        clickFunction(981, 685, 2, 23)
 
-    # macro 2 (time to run macro 2 + 3 sec for finish animation)
-    pyautogui.click(981, 685) 
-    pyautogui.click(981, 685) 
-    time.sleep(23)
+        print("Finished", rotationsInput)
+        rotationsInput -=1
 
-    print("Finished", potsWanted)
-    potsWanted -=1
+if __name__ == "__main__":
+    main()
